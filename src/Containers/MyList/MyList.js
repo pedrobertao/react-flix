@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { API_IMAGE } from '../../utils/constants'
 import * as actions from '../../store/actions'
 import './MyList.css';
+import Aux from '../../hoc/Aux'
 const styles = {
     title: {
         color: 'white'
@@ -26,9 +27,8 @@ const styles = {
 class MyList extends Component {
 
     render() {
-        console.log(">>>", this.props.movieList)
         let listOfMovies = [];
-        for (let movie of this.props.movieList.list) {
+        for (let movie of this.props.movielist.list) {
             listOfMovies.push(
                 <Item key={movie.id} style={{ padding: '10px' }}>
                     <Item.Image size='medium' src={'https://image.tmdb.org/t/p/w780' + movie.poster_path} />
@@ -49,20 +49,18 @@ class MyList extends Component {
             )
         }
         return (
-            <div>
-                <Container textAlign="justified" >
-                    <Item.Group>
-                        {listOfMovies}
-                    </Item.Group>
-                </Container>
-            </div>
+            <Container textAlign="justified">
+                <Item.Group>
+                    {listOfMovies}
+                </Item.Group>
+            </Container>
         )
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        movieList: state.movieList
+        movielist: state.movieList
     }
 }
 

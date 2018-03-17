@@ -1,0 +1,21 @@
+
+.SingleMovieEnterBefore{
+    max-height: 0px;
+    opacity: 0;
+}
+.SingleMovieEnter{
+    transition: max-height 0.6s ease-out, opacity 0.4s ease-out;
+    max-height: 1000px;
+    opacity: 1;
+}
+
+.SingleMovieOutBefore{
+    max-height: 1000px;
+    opacity: 1;
+}
+.SingleMovieOut{
+    transition: max-height 0.6s ease-out, opacity 0.4s ease-out;
+    max-height: 0;
+    opacity: 0;
+
+}

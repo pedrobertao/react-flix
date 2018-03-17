@@ -1,0 +1,32 @@
+.NavigationAvatar{
+    color: white;
+    font-size: 13px;
+}
+.NavigationAvatar span:hover{
+    color: rgb(158, 158, 158)
+}
+
+.NavigationSearch{
+    color: blue;
+}
+
+.NavigationSearch .ui.input>input{
+    background-color: transparent;
+    border-color: white;
+    color: white;
+
+}
+.NavigationSearch .ui.input>input:focus{
+    background-color: transparent;
+    border-color: white;
+    color: white;
+
+}
+
+.NavigationItem{
+    color: white;
+    font-size: 30px;
+}
+.NavigationItem span:hover{
+    color: rgb(158, 158, 158)
+}
