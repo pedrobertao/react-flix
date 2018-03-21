@@ -1,25 +1,27 @@
-import React, { Component } from 'react';
-
-import { Container, Item, Button } from 'semantic-ui-react';
-
-import * as actionsCreators from '../../store/actions'
+import React from 'react';
 import { connect } from 'react-redux';
+import { Item, Button } from 'semantic-ui-react';
+import StarRatingComponent from 'react-star-rating-component';
+import * as actionsCreators from '../../store/actions'
+import { readableDate } from '../../utils/readableDate';
+const textColor = 'rgb(205, 205, 205)'; 
 
 const styles = {
     title: {
         color: 'white'
     },
     release: {
-        color: 'white',
-        fontSize: '20px'
+        fontSize: '18px',
+        color: textColor
     },
     description: {
-        color: 'white',
+        fontFamily: 'Open Sans',
         fontSize: '20px',
+        color: textColor
     },
     extra: {
         bottom: '0px',
-        color: 'white',
+        color: textColor,
         fontSize: '20px'
     },
     label: {
@@ -46,17 +48,21 @@ const SearchItems = (props) => {
         movie = checkFavoriteMovie(movie);
 
         listOfMovies.push(
-            <Item key={movie.id} style={{ padding: '10px' }}>
+            <Item key={movie.id} style={{ padding: '10px'}}>
                 <Item.Image size='medium' src={'https://image.tmdb.org/t/p/w780' + movie.poster_path} />
                 <Item.Content>
-                    <Item.Header style={styles.title}><h1>{movie.title}</h1></Item.Header>
-                    <Item.Meta style={styles.release}>{movie.release_date}</Item.Meta>
+                    <Item.Header style={styles.title}><h1>{movie.title}</h1>
+                        <StarRatingComponent
+                            value={movie.vote_average}
+                            starCount={10}
+                            editing={false}
+                        />
+                    </Item.Header>
+                    <Item.Meta style={styles.release}>Lançamento: {readableDate(movie.release_date)}</Item.Meta>
                     <Item.Description style={styles.description}>
                         {movie.overview}
                     </Item.Description>
-                    <Item.Extra style={styles.extra}>
-                        Popularidade: {Math.round(movie.popularity)}
-                    </Item.Extra>
+                    <Item.Extra style={styles.extra}>Popularidade: {Math.round(movie.popularity)}</Item.Extra>
                     <Item.Extra style={styles.extra}>
                         <Button basic color={movie.isFavorite ? 'red' : 'green'} onClick={() => favoriteHandler(movie)}>
                             {movie.isFavorite ? 'Remover de minha Lista' : 'Adicionar a minha Lista'}

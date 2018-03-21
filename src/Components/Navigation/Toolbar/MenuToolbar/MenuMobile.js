@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Image, Menu } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
+import MiniLogo from '../../../../utils/imgs/mini-logo-queima-diaria.png';
 import SearchBar from '../../../Navigation/Toolbar/MenuToolbar/SearchBar/SearchBar';
 
 const menuDesktop = (props) => {
@@ -10,7 +11,7 @@ const menuDesktop = (props) => {
     return (
         <Container>
             <Menu.Item onClick={() => navigateTo('/')} header>
-                <Image size='mini' src='https://img13.androidappsapk.co/300/1/b/1/br.com.ringa.queimadiaria.png' />
+                <Image size='mini' src={MiniLogo} />
             </Menu.Item>
             <Menu.Item onClick={() => navigateTo('/mylist')} header>
                 <div className='NavigationItem'>

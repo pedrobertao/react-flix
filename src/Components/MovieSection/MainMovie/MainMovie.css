@@ -3,15 +3,76 @@
     width: 100%;
 }
 .textMain{
-    color: white; 
+    font-family: 'Open Sans';
+    color: rgb(224, 224, 224); 
     display: flex;
     z-index: 1;
     position: absolute;
     margin-top:20px;
     left: 20px;
-    max-width: 650px;
+    max-width: 800px;
     flex-direction: column;
 
+}
+.TextTitle{
+    color: 'white';
+    font-size: 35px;
+    margin: 10px;
+}
+
+.TextStar{
+    margin-left: 12px;
+    font-size: 25px; 
+}
+.TextDescription{
+    font-size: 25px;
+    margin: 5px;
+}
+.TextPop{
+    font-size: 20px;
+    margin: 5px;
+}
+
+@media (max-width: 1000px) {
+    .MainMovie{
+        max-height: 600px;
+        width: 100%;
+        overflow: hidden;
+    }
+    .TextDescription{
+        font-size: 12px;
+        width: 50%;
+        margin: 0px;
+
+    }
+    .TextTitle{
+        color: 'white';
+        font-size: 35px;
+        margin: 10px;
+        margin: 0px;
+    }
+
+    .TextStar{
+        font-size: 15px; 
+        margin: 0px;
+    }
+    .TextPop{
+        font-size: 10px;
+        margin: 0px;
+
+    }
+}
+@media (max-width: 550px) {
+    .TextDescription{
+        font-size: 5px;
+    }
+    .TextStar{
+        font-size: 8px; 
+        margin: 0px;
+    }
+    .TextPop{
+        font-size: 5px;
+    }
 }
 
 .imgGradient {
@@ -28,7 +89,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 .imgMain{
     position: relative;
     z-index:-1;
+    left:20em;
     display:block;
     height: auto;
     width: 100%;
+    overflow: hidden;
   }

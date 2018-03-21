@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { Container } from 'semantic-ui-react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { Container, Item, Image } from 'semantic-ui-react';
+import StarRatingComponent from 'react-star-rating-component';
 import { API_SEARCH_MOVIE, API_IMAGE } from '../../../utils/constants';
+import { readableDate } from '../../../utils/readableDate';
+import Aux from '../../../hoc/Aux/Aux';
 import Loader from '../../UI/Loading/Loading';
 import Error from '../../UI/Error/Error';
 import './MainMovie.css';
@@ -38,26 +41,29 @@ class MainMovie extends Component {
         if (this.state.isLoading) mainMovie = <Loader />
         else if (this.state.isError) mainMovie = <Error error={this.state.isError} />
         else {
-            mainMovie = [<div key={0} className={'textMain'}>
-                <span style={{ fontSize: '30px', margin: '10px' }}>{this.state.movie.title}</span><br />
-                <span style={{ fontSize: '25px', margin: '10px' }}>{this.state.movie.overview}</span><br />
-                <span style={{ fontSize: '15px', margin: '10px' }}>{this.state.movie.popularity}</span>
-            </div>,
-            <div key={1} className="imgGradient">
-                <img className="imgMain" src={`${API_IMAGE}w780/${this.state.movie.backdrop_path}`} />
-            </div>];
-        }
-
-        return (
-            <div className="MainMovie" style={styles.main}>
+            mainMovie = <Container fluid>
                 <div key={0} className={'textMain'}>
-                    <span style={{ fontSize: '30px', margin: '10px' }}>{this.state.movie.title}</span><br />
-                    <span style={{ fontSize: '25px', margin: '10px' }}>{this.state.movie.overview}</span><br />
-                    <span style={{ fontSize: '15px', margin: '10px' }}>{this.state.movie.popularity}</span>
+                    <span className="TextTitle">{this.state.movie.title}</span><br />
+                    <p className="TextStar">
+                        <StarRatingComponent
+                            value={5}
+                            fontSize={30}
+                            starCount={10}
+                            editing={false}
+                        /></p> <br />
+                    <span className="TextDescription">Lançamento: {readableDate(this.state.movie.release_date)}</span><br />
+                    <p className="TextDescription" >{this.state.movie.overview}</p><br />
+                    <span className="TextPop">Popularidade: {Math.round(this.state.movie.popularity)}</span>
                 </div>
                 <div key={1} className="imgGradient">
                     <img className="imgMain" src={`${API_IMAGE}w1280/${this.state.movie.backdrop_path}`} />
                 </div>
+            </Container>
+        }
+
+        return (
+            <div className="MainMovie" style={styles.main}>
+                {mainMovie}
             </div>
         )
     }

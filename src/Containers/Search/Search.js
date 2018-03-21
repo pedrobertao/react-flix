@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Container, Item, Button } from 'semantic-ui-react';
+import { Container, Item } from 'semantic-ui-react';
 
 import * as actionsCreators from '../../store/actions'
 import { connect } from 'react-redux';
@@ -35,7 +35,7 @@ class Search extends Component {
             }
         }
         return (
-            <Container>
+            <Container style={{marginBottom: '20px'}}>
                 {searchLabel}
                 <Item.Group divided>
                     {availableMovies}

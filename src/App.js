@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { connect } from 'react-redux';
 import { BrowserRouter, Switch, Redirect, Route } from 'react-router-dom';
 
 import Layout from './Containers/Layout/Layout';
 import Movies from './Containers/Movie/Movie';
 import MyList from './Containers/MyList/MyList';
 import Search from './Containers/Search/Search';
-
-import * as actions from './store/actions'
-
+  
 class App extends Component {
 
   render() {

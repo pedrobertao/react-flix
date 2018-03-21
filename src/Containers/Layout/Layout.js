@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-import Aux from '../../hoc/Aux/Aux';
-import { Link, Redirect, withRouter } from 'react-router-dom';
+import React from 'react';
 import Toolbar from '../../Components/Navigation/Toolbar/Toolbar';
 import Footer from '../../Components/UI/Footer/Footer'
 
@@ -16,4 +14,4 @@ const Layout = (props) => {
     )
 }
 
-export default withRouter(Layout);
+export default Layout;

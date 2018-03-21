@@ -1,3 +1,11 @@
+This is a project for the application test for Queima Diária.
+A simple NetFlix like webpage using React, Redux and React Semantic for design
+
+
+
+
+Also
+ 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

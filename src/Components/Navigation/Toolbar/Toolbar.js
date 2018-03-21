@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Menu } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
 import MenuMobile from './MenuToolbar/MenuMobile';
 import MenuDesktop from './MenuToolbar/MenuDesktop';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Menu, Image } from 'semantic-ui-react';
+import {  Image } from 'semantic-ui-react';
 import './Footer.css'
 const Footer = (props) => {
     return (

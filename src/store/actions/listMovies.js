@@ -1,5 +1,4 @@
 import * as constants from './constants';
-import { API_CONFIG } from '../../utils/constants';
 
 export const addMovietoList = (movie) => {
     return {

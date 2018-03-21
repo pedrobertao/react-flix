@@ -25,5 +25,5 @@
     color: rgb(205, 205, 205) !important;
     font-size: 28px !important;
     height: 300px;
-    overflow: hidden;    
+    overflow: auto;    
 }
