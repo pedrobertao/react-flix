@@ -1,5 +1,6 @@
-This is a project for the application test for Queima Diária.
-A simple NetFlix like webpage using React, Redux and React Semantic for design
+This is a project for an application test at Queima Diária.
+A simple NetFlix like webpage using React, Redux and React Semantic for design.
+Any problems contact me at pedrobertao11@hotmail.com
 
 
 
