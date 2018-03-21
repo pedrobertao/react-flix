@@ -1,0 +1,29 @@
+.Footer{
+    position:relative;
+    width: 100%;
+    bottom: 0;
+    background-color:black;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.Footer span,a{
+    font-size: 13px;
+    margin: 20px;
+    color: white;
+}
+
+.Footer a{
+    color: white;
+    text-decoration: none;
+}
+.Footer a:hover {
+    font-family: 'Open Sans';
+     color:gray; 
+     text-decoration:none; 
+     cursor:pointer;  
+}
+

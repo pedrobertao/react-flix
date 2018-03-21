@@ -4,6 +4,7 @@ const initialState = {
     searchQuery: '',
     results: [],
     isLoading: false,
+    error: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -19,6 +20,14 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 results: action.results,
                 isLoading: false
+            }
+
+        case constants.SEARCH_FAIL:
+            console.log(">>>Reducer", action.error);
+            return {
+                ...state,
+                isLoading: false,
+                error: action.error
             }
         default:
             return state

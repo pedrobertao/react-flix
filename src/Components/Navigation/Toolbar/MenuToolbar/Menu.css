@@ -1,9 +1,10 @@
 .NavigationAvatar{
     color: white;
     font-size: 13px;
+    padding: 5px;
 }
 .NavigationAvatar span:hover{
-    color: rgb(158, 158, 158)
+    color: rgb(158, 158, 158);
 }
 
 .NavigationSearch{
@@ -25,8 +26,25 @@
 
 .NavigationItem{
     color: white;
-    font-size: 30px;
+    font-size: 25px;
+}
+.NavigationItem:active{
+    color: gray;
+
 }
 .NavigationItem span:hover{
     color: rgb(158, 158, 158)
+}
+
+.Avatar{
+    display: flex;
+    margin: 2px;
+    font-family: 'Open Sans';
+    color: white;
+    text-decoration: none;
+}
+.Avatar:hover {
+     color:gray; 
+     text-decoration:none; 
+     cursor:pointer;  
 }

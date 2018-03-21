@@ -1,34 +1,23 @@
 import React, { Component } from 'react';
-import './CategoryRows.css';
+
 import Slider from 'react-slick';
-import { Icon } from 'semantic-ui-react';
-import { API_CATEGORY, API_IMAGE } from '../../../../utils/constants';
-import { Transition } from 'react-transition-group'
-import SingleMovie from '../SingleMovie/SingleMovie';
 import axios from 'axios';
+import { API_CATEGORY, API_IMAGE } from '../../../../utils/constants';
+import SingleMovie from '../SingleMovie/SingleMovie';
+import Loader from '../../../UI/Loading/Loading';
+import Error from '../../../UI/Error/Error';
+import './CategoryRows.css';
 
-
-const NextArrow = (props) => {
-    const { className, style, onClick } = props
-    return (
-        <div
-            onClick={onClick}
-            style={{ ...style, display: 'block', background: 'green' }}
-        ><Icon name="arrow right" /></div>
-    )
-}
 const settings = {
     className: 'slider variable-width',
     dots: false,
     infinite: true,
     centerMode: true,
     slidesToScroll: 1,
-    slidesToShow: 3,
-    variableWidth: true,
-    swipeToSlide: true
+    variableWidth: true
 };
 
-class CategoryRows2 extends Component {
+class CategoryRows extends Component {
     state = {
         isLoading: true,
         movieList: [],
@@ -48,7 +37,6 @@ class CategoryRows2 extends Component {
             allRequest.push(axios.get(endpoint));
         }
         axios.all(allRequest).then(axios.spread((...args) => {
-            // console.log(">>>", args);
             this.setState({ movieList: args, isLoading: false })
         })).catch(error => {
             this.setState({ isLoading: false, isError: error.message })
@@ -68,7 +56,7 @@ class CategoryRows2 extends Component {
         this.setState({ isMovieSelected: newSelection, movieSelected });
     }
 
-    buildGridRowV2 = () => {
+    buildGridRow = () => {
         const movieGenre = ['Mais Recente', 'Ação', 'Aventura', 'Ficção', 'Mistério'];
         let sliderRow = [];
         let groupSlider = [];
@@ -79,7 +67,7 @@ class CategoryRows2 extends Component {
                 sliderRow.push(
                     <div className="tile" onClick={() => this.handleClickMovie(movieGenre[index], genre.data.results[i])} key={genre.data.results[i].title}>
                         <div>
-                            <img className="tile__img" src={`${API_IMAGE}/w300/${genre.data.results[i].backdrop_path}`} alt="" />
+                            <img className="tile__img" src={`${API_IMAGE}w300/${genre.data.results[i].backdrop_path}`} alt="" />
                         </div>
                         <div className="tile__details">
                             <div className="tile__title">
@@ -91,12 +79,11 @@ class CategoryRows2 extends Component {
             }
             groupSlider.push(sliderRow);
             sliderRow = [];
-        });
-
+        });[]
         groupSlider.map((row, index) => {
             finalGroup.push(
-                <div key={index}>
-                    <p style={{ color: 'white' }}>{movieGenre[index]} </p>
+                <div style={{ padding: '20px' }} key={index}>
+                    <span className={'GenreTitle'}>{movieGenre[index]} </span>
                     <Slider {...settings}>
                         {row}
                     </Slider>
@@ -105,21 +92,17 @@ class CategoryRows2 extends Component {
             )
         });
         return finalGroup;
-
     }
 
     render() {
         let gridsByGenre;
-        gridsByGenre = this.buildGridRowV2();
-
-        if (this.state.isLoading) gridsByGenre = <p style={{ color: 'white' }}> Loading Rows </p>;
-        else if (this.state.isError) gridsByGenre = <p style={{ color: 'white' }}>{this.state.isError}</p>
-        else gridsByGenre = this.buildGridRowV2();
-
+        if (this.state.isLoading) gridsByGenre = <Loader />
+        else if (this.state.isError) gridsByGenre = <Error error={this.state.isError} />
+        else gridsByGenre = this.buildGridRow();
         return gridsByGenre;
 
     }
 
 }
 
-export default CategoryRows2;
+export default CategoryRows;

@@ -11,12 +11,10 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
-import movieApiReducer from './store/reducers/movieApi'
 import moviesListReducer from './store/reducers/listMovies'
 import searchReducer from './store/reducers/search'
 
 const mainReducer = combineReducers({
-    apiConfig: movieApiReducer,
     movieList: moviesListReducer,
     searchResults: searchReducer
 })

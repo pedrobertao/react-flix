@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
-import { Container, Image } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { API_SEARCH_MOVIE, API_IMAGE } from '../../../utils/constants';
+import Loader from '../../UI/Loading/Loading';
+import Error from '../../UI/Error/Error';
 import './MainMovie.css';
 
+const styles = {
+    main: {
+        color: 'white',
+        display: 'flex',
+        flexDirection: 'row',
+    }
+}
 class MainMovie extends Component {
     state = {
         movie: {},
@@ -23,21 +32,33 @@ class MainMovie extends Component {
             this.setState({ isLoading: false, isError: error.message })
         })
     }
+
     render() {
-        let image;
-
-        if (this.state.isLoading) image = <p style={{ color: 'white' }}> Loading Main </p>
-        else if (this.state.isError) image = <p style={{ color: 'white' }}> {this.state.isError} </p>
-        else image = <img className={'imgMain'} src={`${API_IMAGE}w780/${this.state.movie.backdrop_path}`} />
-
-
+        let mainMovie;
+        if (this.state.isLoading) mainMovie = <Loader />
+        else if (this.state.isError) mainMovie = <Error error={this.state.isError} />
+        else {
+            mainMovie = [<div key={0} className={'textMain'}>
+                <span style={{ fontSize: '30px', margin: '10px' }}>{this.state.movie.title}</span><br />
+                <span style={{ fontSize: '25px', margin: '10px' }}>{this.state.movie.overview}</span><br />
+                <span style={{ fontSize: '15px', margin: '10px' }}>{this.state.movie.popularity}</span>
+            </div>,
+            <div key={1} className="imgGradient">
+                <img className="imgMain" src={`${API_IMAGE}w780/${this.state.movie.backdrop_path}`} />
+            </div>];
+        }
 
         return (
-            <Container style={{ backgroundColor: 'black' }} fluid>
-                <div className={'pickgradient'}>
-                    {image}
+            <div className="MainMovie" style={styles.main}>
+                <div key={0} className={'textMain'}>
+                    <span style={{ fontSize: '30px', margin: '10px' }}>{this.state.movie.title}</span><br />
+                    <span style={{ fontSize: '25px', margin: '10px' }}>{this.state.movie.overview}</span><br />
+                    <span style={{ fontSize: '15px', margin: '10px' }}>{this.state.movie.popularity}</span>
                 </div>
-            </Container>
+                <div key={1} className="imgGradient">
+                    <img className="imgMain" src={`${API_IMAGE}w1280/${this.state.movie.backdrop_path}`} />
+                </div>
+            </div>
         )
     }
 }

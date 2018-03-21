@@ -1,10 +1,10 @@
 import React from 'react';
-import {
-    Button, Container, Icon, Image, Item, Menu, Segment, Search, Input
-} from 'semantic-ui-react';
+import { Container, Image, Menu } from 'semantic-ui-react';
 import { NavLink, withRouter } from 'react-router-dom';
-import './Menu.css';
 import SearchBar from './SearchBar/SearchBar';
+import Avatar from '../../../../utils/imgs/avatar.png';
+import LogoQD from '../../../../utils/imgs/logo-queima-diaria.png';
+import './Menu.css';
 
 const menuDesktop = (props) => {
 
@@ -14,7 +14,7 @@ const menuDesktop = (props) => {
     return (
         <Container fluid>
             <Menu.Item onClick={() => navigateTo('/')} header>
-                <Image src='https://i0.wp.com/espalhafactos.com/wp-content/uploads/2016/10/Netflix-Logo-Print_CMYK.jpg?resize=732%2C440&ssl=1' size='tiny' />
+                <Image src={LogoQD} size='small' />
             </Menu.Item>
             <Menu.Item onClick={() => navigateTo('/mylist')} header>
                 <div className='NavigationItem'>
@@ -26,10 +26,11 @@ const menuDesktop = (props) => {
                     <SearchBar />
                 </Menu.Item>
                 <Menu.Item onClick={() => navigateTo('/')}>
-                    <Image avatar src='https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAmlAAAAJGY5YzAwYjFiLWFmM2QtNGUxYi04OWZkLWRlZDVlYmExYmExOQ.jpg' />
+                    <Image size='mini' src={Avatar} />
                     <div className='NavigationAvatar'>
-                        <span>Pedro Bertão <br />
-                            ID : 01</span>
+                        <a class="Avatar" href="https://www.linkedin.com/in/pedro-bert%C3%A3o-7a574a87/">
+                            Pedro<br />
+                            Bertão</a>
                     </div>
                 </Menu.Item>
             </Menu.Menu>

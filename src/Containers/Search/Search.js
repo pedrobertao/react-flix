@@ -4,83 +4,40 @@ import { Container, Item, Button } from 'semantic-ui-react';
 
 import * as actionsCreators from '../../store/actions'
 import { connect } from 'react-redux';
+import Loader from '../../Components/UI/Loading/Loading';
+import Error from '../../Components/UI/Error/Error'
+import SearchItems from '../../Components/SearchItems/SearchItems';
 
 const styles = {
-    title: {
-        color: 'white'
-    },
-    release: {
+    label: {
         color: 'white',
-        fontSize: '20px'
-    },
-    description: {
-        color: 'white',
-        fontSize: '20px',
-    },
-    extra: {
-        bottom: '0px',
-        color: 'white',
-        fontSize: '20px'
+        fontSize: '30px',
     }
 }
 
 class Search extends Component {
-
-    checkFavoriteMovie = (movie) => {
-        movie.isFavorite = this.props.movieList.find(m => m.isFavorite && m.id == movie.id) ? true : false;
-        return movie;
-    }
-    favoriteHandler = (movie) => {
-        movie.isFavorite ? this.props.addToMovieList(movie) : this.props.removeFromMovieList(movie.id);
-    }
-    buildMoviesGrid = () => {
-        let listOfMovies = [];
-        this.props.searchResults.some((movie, index) => {
-            if (index > 9) {
-                return;
-            }
-            movie = this.checkFavoriteMovie(movie);
-
-            listOfMovies.push(
-                <Item key={movie.id} style={{ padding: '10px' }}>
-                    <Item.Image size='medium' src={'https://image.tmdb.org/t/p/w780' + movie.poster_path} />
-                    <Item.Content>
-                        <Item.Header style={styles.title}><h1>{movie.title}</h1></Item.Header>
-                        <Item.Meta style={styles.release}>{movie.release_date}</Item.Meta>
-                        <Item.Description style={styles.description}>
-                            {movie.overview}
-                        </Item.Description>
-                        <Item.Extra style={styles.extra}>
-                            Popularidade: {Math.round(movie.popularity)} <br />
-                            <Button toggle active={movie.isFavorite} onClick={() => this.favoriteHandler(movie)}>
-                                Favoritar
-                            </Button>
-                        </Item.Extra>
-                    </Item.Content>
-                </Item>
-            )
-        });
-
-        return listOfMovies;
-    }
     render() {
         let availableMovies = null;
         let searchLabel;
+        
         if (this.props.searchLoading) {
-            searchLabel = <Item style={{ color: 'white' }}> Loading </Item>;
+            searchLabel = <Loader />
         } else {
-            if (this.props.searchResults.length) {
-                availableMovies = this.buildMoviesGrid();
-                searchLabel = <Item style={{ color: 'white' }}> Filmes Encontrados </Item>;
+            if (this.props.searchResults.searchError) {
+                searchLabel = <Error error={this.props.searchResults.searchError} />
             } else {
-                searchLabel = <Item style={{ color: 'white' }}> Nenhum Filme Encontrado </Item>;
-
+                if (this.props.searchResults.length) {
+                    availableMovies = <SearchItems />
+                    searchLabel = <div style={styles.label}> Filmes Encontrados </div>;
+                } else {
+                    searchLabel = <div style={styles.label}> Nenhum Filme Encontrado </div>;
+                }
             }
         }
         return (
-            <Container textAlign='center'>
-                <Item.Group>
-                    {searchLabel}
+            <Container>
+                {searchLabel}
+                <Item.Group divided>
                     {availableMovies}
                 </Item.Group>
             </Container>
@@ -91,6 +48,7 @@ const mapStateToProps = (state) => {
     return {
         searchResults: state.searchResults.results,
         searchLoading: state.searchResults.isLoading,
+        searchError: state.searchResults.error,
         movieList: state.movieList.list
     }
 }

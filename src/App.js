@@ -13,11 +13,7 @@ import * as actions from './store/actions'
 
 class App extends Component {
 
-  componentWillMount() {
-    // this.props.onFetchApiConfig();
-  }
   render() {
-
     return (
       <BrowserRouter>
         <Layout>
@@ -33,9 +29,4 @@ class App extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onFetchApiConfig: () => dispatch(actions.fetchApiConfig())
-  }
-}
-export default connect(null, mapDispatchToProps)(App);
+export default App;

@@ -1,3 +1,7 @@
+.GenreTitle{
+  color: white;
+  font-size: 30px;
+}
 .tile {
   position: relative;
   display: inline-block;

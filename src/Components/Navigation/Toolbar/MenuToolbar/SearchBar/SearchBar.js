@@ -1,11 +1,8 @@
 
 import React, { Component } from 'react';
-import {
-    Search,
-    Input
-} from 'semantic-ui-react';
+import { Search } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { withRouter, Redirect, Route } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import * as actionsCreators from '../../../../../store/actions'
 
 class SearchBar extends Component {
@@ -27,7 +24,10 @@ class SearchBar extends Component {
     render() {
         return (
             <Search
+                className='SearchBar'
+                size='large'
                 showNoResults={false}
+                placeholder={'Digite para pesquisar..'}
                 value={!this.state.isSearching ? '' : this.state.value}
                 onBlur={() => { this.setState({ isSearching: false }) }}
                 onSearchChange={(e, d) => this.inputSearchHandler(e, d)}

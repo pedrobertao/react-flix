@@ -29,7 +29,6 @@ const movieListReducer = (state = initialState, action) => {
     let updatedMovie;
     switch (action.type) {
         case constants.ADD_LIST_MOVIES:
-            console.log("CAI AQUI ADD");
             updatedState = { ...state };
             action.movie.isFavorite = true;
             updatedState.list = [].concat(updatedState.list, action.movie);
@@ -37,7 +36,6 @@ const movieListReducer = (state = initialState, action) => {
             break;
 
         case constants.REMOVE_LIST_MOVIES:
-            console.log("CAI AQUI REMOVE");
             updatedState = { ...state };
             updatedState.list = updatedState.list.filter(m => m.id != action.movieId);
             return updatedState;

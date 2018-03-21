@@ -2,10 +2,17 @@ import * as constants from './constants';
 import { API_SEARCH_MOVIE } from '../../utils/constants';
 import axios from 'axios';
 
-export const fetchResultsSearchSucces = (results) => {
+export const fetchResultsSearchSuccess = (results) => {
     return {
         type: constants.SEARCH_SUCCESS,
-        results: results
+        results
+    }
+}
+
+export const fetchResultsSearchFail = (error) => {
+    return {
+        type: constants.SEARCH_FAIL,
+        error
     }
 }
 
@@ -14,9 +21,9 @@ export const fetchResultsSearch = (query) => {
     return dispatch => {
         axios.get(fullSearch).then(response => {
             // console.log(">>>>>>>>>", response);
-            dispatch(fetchResultsSearchSucces(response.data.results));
-        }).catch(err => {
-            console.log("erro no get do fetchResultsSearch", err);
+            dispatch(fetchResultsSearchSuccess(response.data.results));
+        }).catch(error => {
+            dispatch(fetchResultsSearchFail("Algum problema na hora de pesquisar os filmes"));
         });
     }
 }
