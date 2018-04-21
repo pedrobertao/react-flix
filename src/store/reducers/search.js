@@ -23,7 +23,6 @@ const reducer = (state = initialState, action) => {
             }
 
         case constants.SEARCH_FAIL:
-            console.log(">>>Reducer", action.error);
             return {
                 ...state,
                 isLoading: false,

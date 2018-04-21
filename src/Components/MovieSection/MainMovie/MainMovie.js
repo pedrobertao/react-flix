@@ -25,13 +25,11 @@ class MainMovie extends Component {
     }
     componentWillMount() {
         axios.get(API_SEARCH_MOVIE + '&query=Avengers').then(response => {
-            console.log(response);
             this.setState({
                 movie: response.data.results[0],
                 isLoading: false
             })
         }).catch(error => {
-            console.log("error no get", error);
             this.setState({ isLoading: false, isError: error.message })
         })
     }

@@ -15,7 +15,6 @@ class SearchBar extends Component {
         let query = data.value.replace(/\s/g, '+');
         this.setState({ isSearching: true, value: data.value });
         if (!this.state.isSearching) {
-            console.log("CAI AQUI !");
             this.props.history.push('/search');
         }
         this.props.fetchSearchResults(query);
