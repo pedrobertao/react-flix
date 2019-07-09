@@ -1,7 +1,7 @@
 import React from 'react';
-import { Container, Image, Menu } from 'semantic-ui-react';
+import { Container, Menu } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
-import MiniLogo from '../../../../utils/imgs/mini-logo-queima-diaria.png';
+
 import SearchBar from '../../../Navigation/Toolbar/MenuToolbar/SearchBar/SearchBar';
 
 const menuDesktop = (props) => {
@@ -11,15 +11,15 @@ const menuDesktop = (props) => {
     return (
         <Container>
             <Menu.Item onClick={() => navigateTo('/')} header>
-                <Image size='mini' src={MiniLogo} />
+                <h3 className='logo'>ReactFlix</h3>
             </Menu.Item>
             <Menu.Item onClick={() => navigateTo('/mylist')} header>
                 <div className='NavigationItem'>
-                    <span style={{ fontSize: '15px' }}>Minha Lista</span>
+                    <span>Minha Lista</span>
                 </div>
             </Menu.Item>
             <Menu.Item header>
-                <SearchBar />
+                <SearchBar size='tiny'/>
             </Menu.Item>
         </Container>
     )

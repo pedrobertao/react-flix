@@ -24,13 +24,12 @@ class SearchBar extends Component {
         return (
             <Search
                 className='SearchBar'
-                size='large'
                 showNoResults={false}
                 placeholder={'Digite para pesquisar..'}
                 value={!this.state.isSearching ? '' : this.state.value}
                 onBlur={() => { this.setState({ isSearching: false }) }}
                 onSearchChange={(e, d) => this.inputSearchHandler(e, d)}
-                {...this.props }
+                {...this.props}
             />
         )
     }

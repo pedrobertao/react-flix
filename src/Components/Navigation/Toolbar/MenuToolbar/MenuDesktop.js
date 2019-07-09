@@ -5,7 +5,6 @@ import { withRouter } from 'react-router-dom';
 import './Menu.css';
 import SearchBar from './SearchBar/SearchBar';
 import Avatar from '../../../../utils/imgs/avatar.png';
-// import LogoQD from '../../../../utils/imgs/logo-queima-diaria.png';
 
 const menuDesktop = (props) => {
 
@@ -24,7 +23,7 @@ const menuDesktop = (props) => {
             </Menu.Item>
             <Menu.Menu position="right">
                 <Menu.Item header>
-                    <SearchBar />
+                    <SearchBar size='large' />
                 </Menu.Item>
                 <Menu.Item onClick={() => navigateTo('/')}>
                     <Image size='mini' src={Avatar} />

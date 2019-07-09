@@ -54,7 +54,7 @@ class MainMovie extends Component {
                     <span className="TextPop">Popularidade: {Math.round(this.state.movie.popularity)}</span>
                 </div>
                 <div key={1} className="imgGradient">
-                    <img className="imgMain" src={`${API_IMAGE}w1280/${this.state.movie.backdrop_path}`} />
+                    <img className="imgMain" alt="firstimage" src={`${API_IMAGE}w1280/${this.state.movie.backdrop_path}`} />
                 </div>
             </Container>
         }
