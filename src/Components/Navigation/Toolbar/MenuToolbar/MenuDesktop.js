@@ -1,10 +1,11 @@
 import React from 'react';
 import { Container, Image, Menu } from 'semantic-ui-react';
-import { NavLink, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+
+import './Menu.css';
 import SearchBar from './SearchBar/SearchBar';
 import Avatar from '../../../../utils/imgs/avatar.png';
-import LogoQD from '../../../../utils/imgs/logo-queima-diaria.png';
-import './Menu.css';
+// import LogoQD from '../../../../utils/imgs/logo-queima-diaria.png';
 
 const menuDesktop = (props) => {
 
@@ -14,7 +15,7 @@ const menuDesktop = (props) => {
     return (
         <Container fluid>
             <Menu.Item onClick={() => navigateTo('/')} header>
-                <Image src={LogoQD} size='small' />
+                <h1 className='logo'>ReactFlix</h1>
             </Menu.Item>
             <Menu.Item onClick={() => navigateTo('/mylist')} header>
                 <div className='NavigationItem'>
